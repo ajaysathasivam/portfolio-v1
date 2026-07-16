@@ -4,40 +4,19 @@ import { Briefcase, Calendar, MapPin } from "lucide-react";
 export default function Experience() {
   const experiences = [
     {
-      role: "Senior Frontend Engineer",
-      company: "InnovateTech Solutions",
-      location: "San Francisco, CA (Remote)",
-      duration: "Jan 2024 - Present",
+      role: "Software Developer (Frontend Specialist)",
+      company: "Selvi Software Technologies Pvt Ltd",
+      location: "Chennai, India (Remote)",
+      duration: "Feb 2025 - Present",
       description: [
-        "Architected core Next.js application migration, resulting in a 40% improvement in first-input delay (FID) and lighthouse performance scores.",
-        "Created and maintained a highly accessible custom Tailwind component library, streamlining developer workflow and cutting production time by 25%.",
-        "Mentored junior engineers and instituted code review standards to bolster overall codebase health and maintainability.",
+        "Engineered an interactive multi-destination Trip Planner & Timeline Builder in React 19, enabling seamless day-by-day scheduling and validation rules preventing conflicting timelines.",
+        "Developed a high-density Guest Preference Matrix featuring sticky section headers, scroll-to-error validation, and localized configurations that resolved legacy re-render bottlenecks.",
+        "Built a full-stack real-time messaging engine using NestJS and Socket.io, supporting group chat channels, floating mentions (@username), and direct sharing overlays.",
+        "Created a drag-and-drop dashboard widget engine utilizing @dnd-kit, allowing users to customize and persist layouts across sessions.",
+        "Architected role-based authentication flows and payment gateways using NextAuth.js and Stripe, ensuring secure client routes.",
+        "Programmed a local database branch-sync Bash utility, sanitizing Git branch states to automatically spin up isolated development databases in Docker, preventing schema collisions.",
       ],
-      tags: ["Next.js", "TypeScript", "Tailwind CSS", "React Server Components", "Vercel"],
-    },
-    {
-      role: "Frontend Developer",
-      company: "Creative Web Labs",
-      location: "New York, NY (Hybrid)",
-      duration: "Mar 2022 - Dec 2023",
-      description: [
-        "Led client-facing React web application development, handling API integrations, local state management, and real-time sockets.",
-        "Optimized asset loading configurations, reducing main bundle sizes by 30% and significantly enhancing mobile client load speed.",
-        "Collaborated with UX design teams to convert high-fidelity Figma mockups into pixel-perfect responsive layouts.",
-      ],
-      tags: ["React", "JavaScript", "Redux Toolkit", "Sass", "REST APIs", "Figma"],
-    },
-    {
-      role: "Junior Web Developer",
-      company: "PixelCraft Digital",
-      location: "Boston, MA",
-      duration: "Jun 2020 - Feb 2022",
-      description: [
-        "Developed and maintained corporate landing pages and e-commerce stores utilizing HTML, CSS, and basic JavaScript frameworks.",
-        "Executed weekly cross-browser testing plans to ensure consistency across Chrome, Safari, Firefox, and Edge browsers.",
-        "Handled minor search engine optimization (SEO) configurations and Google Analytics tags integrations.",
-      ],
-      tags: ["HTML5", "CSS3", "JavaScript", "WordPress", "SEO", "Google Analytics"],
+      tags: ["React 19", "Next.js", "TypeScript", "Tailwind CSS", "Zustand / Redux", "NestJS", "Laravel", "PostgreSQL", "Socket.io", "Docker"],
     },
   ];
 

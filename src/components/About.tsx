@@ -6,24 +6,24 @@ export default function About() {
     {
       title: "Frontend Stack",
       icon: <Code2 className="text-accent-indigo" size={20} />,
-      skills: ["React 19", "Next.js 15/16", "TypeScript", "Tailwind CSS", "HTML5 & CSS3", "Framer Motion"],
+      skills: ["React 19", "Next.js", "TypeScript", "Tailwind CSS", "Redux", "Zustand", "Formik & Yup", "Framer Motion"],
     },
     {
       title: "Backend & Systems",
       icon: <Database className="text-accent-purple" size={20} />,
-      skills: ["Node.js", "Express", "RESTful APIs", "GraphQL", "PostgreSQL", "MongoDB"],
+      skills: ["Node.js", "NestJS", "Laravel", "REST APIs", "Socket.io", "PostgreSQL", "Prisma ORM", "Redis"],
     },
     {
-      title: "Tools & Deployment",
+      title: "Tools & DevOps",
       icon: <Cpu className="text-accent-cyan" size={20} />,
-      skills: ["Git & GitHub", "Vercel", "Docker", "Webpack / Vite", "CI/CD Pipelines", "Figma"],
+      skills: ["Git & GitHub", "Docker", "Bash Scripting", "NextAuth.js", "Vite", "Vercel"],
     },
   ];
 
   const stats = [
-    { value: "3+", label: "Years Experience" },
-    { value: "20+", label: "Projects Completed" },
-    { value: "99.9%", label: "Uptime & Quality" },
+    { value: "1.7", label: "Years Experience" },
+    { value: "7+", label: "SaaS Modules Built" },
+    { value: "100%", label: "Production-Ready Code" },
   ];
 
   return (
@@ -49,13 +49,12 @@ export default function About() {
           <div className="lg:col-span-7 flex flex-col gap-8">
             <div className="space-y-6 text-text-secondary text-base md:text-lg leading-relaxed font-light">
               <p>
-                I am a web engineer dedicated to creating highly optimized, responsive, and gorgeous digital interfaces.
+                I am a frontend-specialized software developer dedicated to creating highly optimized, responsive, and gorgeous digital interfaces.
                 With a focus on performance, accessibility, and fluid interactivity, I translate complex product demands
                 into robust, elegant technical implementations.
               </p>
               <p>
-                Whether it&apos;s configuring customized design systems, architecting state management, or optimizing full-stack routing,
-                I strive for pixel perfection and scalable, clean codebases.
+                Over my 1.7 years of professional experience, I have contributed to 7+ production-grade SaaS modules, including Yacht CRM systems, KYC/AML portals, and medical consultation engines. While specializing in frontend libraries like React 19, Next.js, and Zustand, I also leverage active backend knowledge (NestJS, Laravel, PostgreSQL) and DevOps automation tools to build seamless end-to-end features.
               </p>
             </div>
 

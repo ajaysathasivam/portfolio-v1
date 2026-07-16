@@ -33,7 +33,7 @@ export default function Hero() {
 
         {/* Hero Subtitle */}
         <p className="text-lg md:text-xl text-text-secondary max-w-2xl mb-10 leading-relaxed font-light">
-          Hi, I&apos;m a passionate frontend engineer specializing in building high-performance, visually stunning, and highly interactive web applications using Next.js and Tailwind CSS.
+          Hi, I&apos;m <span className="font-semibold text-white">Ajay Sathasivam</span>. I am a frontend-specialized software developer with 1.7 years of experience building high-performance, responsive SaaS web applications using React, Next.js, and modern tools.
         </p>
 
         {/* Action Buttons */}
@@ -56,7 +56,7 @@ export default function Hero() {
         {/* Social Links */}
         <div className="flex items-center gap-6 text-text-secondary">
           <a
-            href="https://github.com"
+            href="https://github.com/ajaysathasivam"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-white hover:scale-110 transition-all duration-200"
@@ -71,7 +71,7 @@ export default function Hero() {
             </svg>
           </a>
           <a
-            href="https://linkedin.com"
+            href="https://www.linkedin.com/in/ajaysathasivam/"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-white hover:scale-110 transition-all duration-200"
@@ -86,7 +86,7 @@ export default function Hero() {
             </svg>
           </a>
           <a
-            href="mailto:contact@example.com"
+            href="mailto:ajaysathasivam@2003gmail.com"
             className="hover:text-white hover:scale-110 transition-all duration-200"
             aria-label="Email"
           >

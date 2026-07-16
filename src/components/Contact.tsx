@@ -65,8 +65,8 @@ export default function Contact() {
                   </div>
                   <div>
                     <span className="text-xs text-text-muted block">Email Me</span>
-                    <a href="mailto:contact@example.com" className="text-sm font-semibold text-white hover:text-accent-indigo transition-colors duration-200">
-                      contact@example.com
+                    <a href="mailto:ajaysathasivam@2003gmail.com" className="text-sm font-semibold text-white hover:text-accent-indigo transition-colors duration-200">
+                      ajaysathasivam@2003gmail.com
                     </a>
                   </div>
                 </div>
@@ -78,7 +78,7 @@ export default function Contact() {
                   <div>
                     <span className="text-xs text-text-muted block">Location</span>
                     <span className="text-sm font-semibold text-white">
-                      San Francisco, California, US
+                      Chennai, India
                     </span>
                   </div>
                 </div>
@@ -196,7 +196,7 @@ export default function Contact() {
         {/* Footer Container */}
         <footer className="mt-32 pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-6 text-sm text-text-secondary font-light">
           <div>
-            <span>&copy; {new Date().getFullYear()} CreativeDev. All rights reserved.</span>
+            <span>&copy; {new Date().getFullYear()} Ajay Sathasivam. All rights reserved.</span>
           </div>
           <div className="flex items-center gap-6">
             <a href="#home" className="hover:text-white transition-colors duration-200">Home</a>
