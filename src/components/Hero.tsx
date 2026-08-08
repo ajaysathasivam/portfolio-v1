@@ -1,5 +1,4 @@
-import React from "react";
-import { ArrowRight, Mail } from "lucide-react";
+import { ArrowRight, Download, ChevronDown } from "lucide-react";
 
 export default function Hero() {
   return (
@@ -11,7 +10,7 @@ export default function Hero() {
         {/* Glowing Orb 2 */}
         <div className="absolute bottom-[25%] right-[15%] w-[400px] h-[400px] rounded-full bg-accent-purple/15 blur-[130px] animate-pulse-slow" style={{ animationDelay: "2s" }}></div>
         {/* Subtle Grid overlay */}
-        <div 
+        <div
           className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:4rem_4rem]"
           style={{ maskImage: "radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)", WebkitMaskImage: "radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)" }}
         ></div>
@@ -20,7 +19,7 @@ export default function Hero() {
       <div className="relative z-10 max-w-5xl mx-auto px-6 md:px-12 text-center flex flex-col items-center">
         {/* Status Badge */}
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-panel text-xs md:text-sm font-medium text-accent-cyan mb-8 animate-float">
-          <span className="w-2 h-2 rounded-full bg-accent-cyan animate-ping"></span>
+          <span className="w-2 h-2 rounded-full bg-accent-cyan animate-ping" aria-hidden="true"></span>
           <span>Open to new opportunities</span>
         </div>
 
@@ -46,10 +45,14 @@ export default function Hero() {
             <ArrowRight size={18} />
           </a>
           <a
-            href="#contact"
+            href="/Resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            download
             className="flex items-center justify-center gap-2 w-full sm:w-auto px-8 py-4 rounded-full glass-panel text-white font-semibold hover:bg-white/10 border-white/10 hover:border-white/20 transition-all duration-300"
           >
-            <span>Get in Touch</span>
+            <span>Download Resume</span>
+            <Download size={18} />
           </a>
         </div>
 
@@ -86,13 +89,21 @@ export default function Hero() {
             </svg>
           </a>
           <a
-            href="mailto:ajaysathasivam@2003gmail.com"
+            href="mailto:ajaysathasivam2003@gmail.com"
             className="hover:text-white hover:scale-110 transition-all duration-200"
             aria-label="Email"
           >
-            <Mail size={22} />
+            <svg xmlns="http://www.w3.org/2000/svg" className="w-[22px] h-[22px] fill-none stroke-current" viewBox="0 0 24 24" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+              <rect width="20" height="16" x="2" y="4" rx="2" />
+              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+            </svg>
           </a>
         </div>
+      </div>
+
+      {/* Scroll-down indicator */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 animate-bounce text-text-muted">
+        <ChevronDown size={22} aria-hidden="true" />
       </div>
     </section>
   );
