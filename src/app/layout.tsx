@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,8 +15,24 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Creative Developer | Portfolio",
-  description: "Modern professional portfolio built with Next.js, Tailwind CSS, and TypeScript, optimized for fast loading and visual elegance.",
+  metadataBase: new URL("https://ajaysathasivam.dev"),
+  title: "Ajay Sathasivam — Frontend Developer",
+  description:
+    "Frontend-specialized developer with 1.7+ years building production SaaS apps. Specializes in React 19, Next.js, TypeScript, and full-stack Node.js systems.",
+  openGraph: {
+    title: "Ajay Sathasivam — Frontend Developer",
+    description:
+      "Frontend-specialized developer with 1.7+ years building production SaaS apps. Specializes in React 19, Next.js, TypeScript, and full-stack Node.js systems.",
+    url: "https://ajaysathasivam.dev",
+    siteName: "Ajay Sathasivam Portfolio",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Ajay Sathasivam — Frontend Developer",
+    description:
+      "Frontend-specialized developer building production SaaS with React 19, Next.js & TypeScript.",
+  },
 };
 
 export default function RootLayout({
@@ -31,6 +48,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-bg-primary text-text-primary">
         <Navbar />
         {children}
+        <Footer />
       </body>
     </html>
   );

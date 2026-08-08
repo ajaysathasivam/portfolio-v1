@@ -8,6 +8,8 @@ export interface Project {
   shortDescription: string;
   longDescription: string;
   image: string;
+  /** "web" for browser-based apps, "mobile" for React Native / Expo apps */
+  platform: "web" | "mobile";
   tags: string[];
   liveUrl?: string;
   githubUrl?: string;
@@ -27,6 +29,7 @@ export const projectsData: Project[] = [
     shortDescription: "A production-grade Yacht CRM and Charter Management platform featuring an interactive multi-destination Trip Planner, a custom Guest Preference sheets Matrix view, and real-time notification hubs.",
     longDescription: "This Yacht CRM is a production-grade SaaS application designed to streamline the operations of yacht owners, captains, and charter managers. The platform manages booking lifecycles, itinerary logistics, and guest onboarding preference tracking. It handles complex client-side validations, real-time syncs, and high-density rendering loops in React, ensuring crews can coordinate efficiently even with massive data grids.",
     image: "/devflow.jpg",
+    platform: "web",
     tags: ["React 19", "Tailwind CSS", "i18next", "Laravel 12 API", "Stripe"],
     features: [
       "Interactive Trip Planner & Timeline Builder: Developed a multi-destination calendar builder enabling operators to plot arrivals, departures, and preparation/recovery timeframes with rigid date boundary validations.",
@@ -52,6 +55,7 @@ export const projectsData: Project[] = [
     shortDescription: "A real-time sports and vessel management platform featuring Socket.io messaging, autocomplete user mentions (@username), drag-and-drop curation filters, and automated Docker database isolation.",
     longDescription: "A high-performance Marine Operations & Regatta Management platform designed to run real-time updates for spectators, competitors, and organizers. The application handles high-frequency communication gateways, content curation for active sailing events, and local developer flow automations to make team feature branches completely isolation-safe.",
     image: "/aether.jpg",
+    platform: "web",
     tags: ["React 19", "Tailwind CSS 4", "NestJS 11", "Socket.io", "Prisma ORM", "Docker"],
     features: [
       "Real-Time Messaging Gateway: Built low-latency chat hubs using Socket.io WebSockets with NestJS controller endpoints.",
@@ -76,6 +80,7 @@ export const projectsData: Project[] = [
     shortDescription: "A secure administration panel and watchlist screening dashboard featuring role-based session management, multi-tier financial payouts, and bulk CSV uploads/validation workflows.",
     longDescription: "An enterprise-grade KYC (Know Your Customer) and AML (Anti-Money Laundering) compliance portal built to handle sensitive user verification pipelines. The system features multi-role security configurations, batch csv validators, and high-performance reporting dashboards to keep audit records clean and secure.",
     image: "/helix.jpg",
+    platform: "web",
     tags: ["Next.js", "NextAuth.js", "Tailwind CSS", "Recharts", "Node.js", "Express"],
     features: [
       "Watchlist Screening & CSV Bulk Import: Engineered client-side CSV upload parsing and row validations, mapping fields to watchlist comparison endpoints.",
@@ -97,7 +102,8 @@ export const projectsData: Project[] = [
     problem: "Families and teams struggle to coordinate and distribute shared mobile data caps, leading to unexpected overage fees or unused capacity rollover waste.",
     shortDescription: "A cross-platform React Native & Expo mobile application built on Expo SDK 54, featuring a predictive Daily Rollover Engine and a Virtual Rollover Vault to track data savings.",
     longDescription: "DataTribe is an intuitive cross-platform mobile application designed to help families, friends, and teams coordinate, split, and optimize shared mobile data pools. It solves mobile plan management problems by implementing a predictive daily rollover engine, simulated data trackers, and persistent Zustand caching stores to maintain offline capability.",
-    image: "/devflow.jpg",
+    image: "/aether.jpg",
+    platform: "mobile",
     tags: ["React Native", "Expo SDK 54", "React 19", "Zustand 5", "Formik", "Yup"],
     liveUrl: "https://expo.dev/@anonymous/data-rollover",
     githubUrl: "https://github.com/ajaysathasivam/datatribe/tree/main",
@@ -150,7 +156,8 @@ const activeMode = themeMode === 'system' ? (systemScheme || 'dark') : themeMode
     problem: "Standard mobile streaming applications are heavy, lack dual RTMP broadcaster/HLS viewer features, and don't support responsive WebSocket interactive elements inside unified Expo SDK builds.",
     shortDescription: "A feature-rich React Native & Expo application designed for real-time live video broadcasting (RTMP) and interactive HLS viewer playback, featuring WebSockets chat and floating reactions.",
     longDescription: "A high-performance live broadcasting client built on Expo SDK 54. It acts as the primary mobile interface for the Seaward Strike platform, allowing users to publish live camera feeds using RTMP and watch streams via HLS, with synchronized real-time chat feeds and floating animated reactions.",
-    image: "/helix.jpg",
+    image: "/devflow.jpg",
+    platform: "mobile",
     tags: ["React Native", "Expo SDK 54", "Zustand", "Socket.io Client", "Reanimated", "expo-video"],
     liveUrl: "https://expo.dev/@anonymous/stream-client",
     githubUrl: "https://github.com/ajaysathasivam/stream-client/tree/main",

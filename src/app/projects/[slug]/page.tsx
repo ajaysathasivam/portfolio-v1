@@ -1,7 +1,7 @@
-import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 import { ArrowLeft, ExternalLink, Cpu, Layers, Terminal, ShieldAlert, Briefcase } from "lucide-react";
 import { projectsData } from "@/data/projects";
 
@@ -13,6 +13,21 @@ export async function generateStaticParams() {
   return projectsData.map((project) => ({
     slug: project.slug,
   }));
+}
+
+export async function generateMetadata({ params }: ProjectPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const project = projectsData.find((p) => p.slug === slug);
+  if (!project) return {};
+  return {
+    title: `${project.title} — Ajay Sathasivam`,
+    description: project.shortDescription,
+    openGraph: {
+      title: `${project.title} — Ajay Sathasivam`,
+      description: project.shortDescription,
+      images: [{ url: project.image }],
+    },
+  };
 }
 
 export default async function ProjectPage({ params }: ProjectPageProps) {

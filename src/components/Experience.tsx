@@ -1,9 +1,9 @@
-import React from "react";
-import { Briefcase, Calendar, MapPin } from "lucide-react";
+import { Briefcase, Calendar, MapPin, GraduationCap } from "lucide-react";
 
 export default function Experience() {
   const experiences = [
     {
+      type: "work",
       role: "Software Developer (Frontend Specialist)",
       company: "Selvi Software Technologies Pvt Ltd",
       location: "Chennai, India (Remote)",
@@ -17,6 +17,19 @@ export default function Experience() {
         "Programmed a local database branch-sync Bash utility, sanitizing Git branch states to automatically spin up isolated development databases in Docker, preventing schema collisions.",
       ],
       tags: ["React 19", "Next.js", "TypeScript", "Tailwind CSS", "Zustand / Redux", "NestJS", "Laravel", "PostgreSQL", "Socket.io", "Docker"],
+    },
+    {
+      type: "education",
+      role: "B.E. Computer Science & Engineering",
+      company: "Sri Sairam Engineering College",
+      location: "Chennai, India",
+      duration: "2020 - 2024",
+      description: [
+        "Graduated with a degree in Computer Science & Engineering.",
+        "Focused on data structures, algorithms, web technologies, and software engineering principles.",
+        "Developed foundational full-stack projects using PHP, MySQL, and JavaScript.",
+      ],
+      tags: ["C", "Java", "Python", "Data Structures", "DBMS", "Web Tech"],
     },
   ];
 
@@ -36,7 +49,7 @@ export default function Experience() {
             Professional <span className="text-gradient-purple-indigo">Experience</span>
           </h2>
           <p className="text-text-secondary mt-4 max-w-xl font-light text-base md:text-lg">
-            A timeline of my professional work history and technical achievements in web engineering.
+            A timeline of my professional work history, technical achievements, and education.
           </p>
         </div>
 
@@ -45,16 +58,23 @@ export default function Experience() {
           {experiences.map((exp, index) => (
             <div key={index} className="relative group">
               {/* Timeline Connector Indicator Node */}
-              <div className="absolute -left-[31px] md:-left-[47px] top-1.5 w-[10px] h-[10px] md:w-[14px] md:h-[14px] rounded-full bg-[#030712] border-2 border-white/30 group-hover:border-accent-cyan group-hover:scale-125 transition-all duration-300 shadow-[0_0_10px_rgba(3,7,18,1)]"></div>
-              
+              <div className="absolute -left-[31px] md:-left-[47px] top-1.5 w-[10px] h-[10px] md:w-[14px] md:h-[14px] rounded-full bg-bg-primary border-2 border-white/30 group-hover:border-accent-cyan group-hover:scale-125 transition-all duration-300 shadow-[0_0_10px_rgba(3,7,18,1)]"></div>
+
               {/* Timeline Card */}
               <div className="glass-panel glass-panel-hover p-6 md:p-8 rounded-2xl flex flex-col gap-4">
-                {/* Meta details (Duration, Location, Company) */}
+                {/* Meta details */}
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-2 border-b border-white/5 pb-4">
                   <div>
-                    <h3 className="text-xl font-bold text-white group-hover:text-accent-cyan transition-colors duration-300">
-                      {exp.role}
-                    </h3>
+                    <div className="flex items-center gap-2 mb-1">
+                      {exp.type === "education" ? (
+                        <GraduationCap size={16} className="text-accent-purple" />
+                      ) : (
+                        <Briefcase size={16} className="text-accent-cyan" />
+                      )}
+                      <h3 className="text-xl font-bold text-white group-hover:text-accent-cyan transition-colors duration-300">
+                        {exp.role}
+                      </h3>
+                    </div>
                     <span className="text-sm font-medium text-text-secondary mt-1 block">
                       {exp.company}
                     </span>

@@ -1,4 +1,3 @@
-import React from "react";
 import { Code2, Cpu, Database, Eye, Sparkles } from "lucide-react";
 
 export default function About() {
@@ -21,9 +20,9 @@ export default function About() {
   ];
 
   const stats = [
-    { value: "1.7", label: "Years Experience" },
+    { value: "1.7+", label: "Years Experience" },
     { value: "7+", label: "SaaS Modules Built" },
-    { value: "100%", label: "Production-Ready Code" },
+    { value: "2", label: "Open Source Apps" },
   ];
 
   return (

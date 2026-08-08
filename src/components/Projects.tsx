@@ -1,7 +1,6 @@
-import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Smartphone, Globe } from "lucide-react";
 import { projectsData } from "@/data/projects";
 
 export default function Projects() {
@@ -37,9 +36,23 @@ export default function Projects() {
                   src={project.image}
                   alt={project.title}
                   fill
-                  sizes="(max-w-768px) 100vw, (max-w-1200px) 50vw, 33vw"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   className="object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out opacity-90 group-hover:opacity-100"
                 />
+                {/* Platform Badge */}
+                <div className="absolute top-3 right-3">
+                  {project.platform === "mobile" ? (
+                    <span className="flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold bg-black/60 text-accent-cyan border border-accent-cyan/20 backdrop-blur-sm">
+                      <Smartphone size={10} />
+                      Mobile App
+                    </span>
+                  ) : (
+                    <span className="flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold bg-black/60 text-accent-indigo border border-accent-indigo/20 backdrop-blur-sm">
+                      <Globe size={10} />
+                      Web App
+                    </span>
+                  )}
+                </div>
               </Link>
 
               {/* Card Body */}
