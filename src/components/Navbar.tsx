@@ -1,94 +1,121 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { usePathname } from "next/navigation";
 import { Menu, X, ArrowUpRight } from "lucide-react";
+
+const NAV_LINKS = [
+  { name: "Home",       id: "home" },
+  { name: "About",      id: "about" },
+  { name: "Experience", id: "experience" },
+  { name: "Projects",   id: "projects" },
+  { name: "Contact",    id: "contact" },
+];
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const pathname = usePathname();
-
-  // On non-home pages (e.g. /projects/stream-client), anchor links must
-  // include the full path so the browser navigates back to the homepage.
   const isHomePage = pathname === "/";
-  const sectionHref = (hash: string) => (isHomePage ? hash : `/${hash}`);
 
+  const sectionHref = (id: string) => (isHomePage ? `#${id}` : `/#${id}`);
+
+  // Scroll shadow
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Track which section is in view for the active nav indicator
-  useEffect(() => {
+  // Active section detection — scroll-position based (most reliable)
+  const updateActive = useCallback(() => {
     if (!isHomePage) return;
 
-    const sectionIds = ["home", "about", "experience", "projects", "contact"];
-    const observers: IntersectionObserver[] = [];
-
-    sectionIds.forEach((id) => {
+    const offsets = NAV_LINKS.map(({ id }) => {
       const el = document.getElementById(id);
-      if (!el) return;
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) setActiveSection(id);
-        },
-        { rootMargin: "-40% 0px -55% 0px" }
-      );
-      observer.observe(el);
-      observers.push(observer);
+      if (!el) return { id, top: Infinity };
+      return { id, top: el.getBoundingClientRect().top };
     });
 
-    return () => observers.forEach((obs) => obs.disconnect());
+    // Pick the last section whose top is at or above 30% of viewport height
+    const threshold = window.innerHeight * 0.3;
+    let current = offsets[0].id;
+    for (const { id, top } of offsets) {
+      if (top <= threshold) current = id;
+    }
+    setActiveSection(current);
   }, [isHomePage]);
 
-  const navLinks = [
-    { name: "Home",       hash: "#home" },
-    { name: "About",      hash: "#about" },
-    { name: "Experience", hash: "#experience" },
-    { name: "Projects",   hash: "#projects" },
-    { name: "Contact",    hash: "#contact" },
-  ];
+  useEffect(() => {
+    if (!isHomePage) return;
+    updateActive();
+    window.addEventListener("scroll", updateActive, { passive: true });
+    return () => window.removeEventListener("scroll", updateActive);
+  }, [isHomePage, updateActive]);
+
+  // On click: immediately set active without waiting for scroll event
+  const handleNavClick = (id: string) => {
+    setActiveSection(id);
+    setIsOpen(false);
+  };
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "py-4 bg-bg-primary border-b border-white/5 shadow-lg"
-          : "py-6 bg-transparent"
+          ? "py-3 backdrop-blur-xl bg-black/60 border-b border-white/[0.06] shadow-[0_4px_30px_rgba(0,0,0,0.5)]"
+          : "py-5 bg-transparent"
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
+
         {/* Logo */}
-        <a href={sectionHref("#home")} className="text-xl font-bold tracking-tight text-white flex items-center gap-1 group">
+        <a
+          href={sectionHref("home")}
+          onClick={() => handleNavClick("home")}
+          className="text-xl font-bold tracking-tight text-white flex items-center gap-1 group select-none"
+        >
           <span>Ajay</span>
           <span className="text-accent-indigo group-hover:text-accent-purple transition-colors duration-300">.dev</span>
-          <span className="w-1.5 h-1.5 rounded-full bg-accent-cyan" aria-hidden="true"></span>
+          <span className="w-1.5 h-1.5 rounded-full bg-accent-cyan animate-pulse ml-0.5" aria-hidden="true" />
         </a>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => {
-            const sectionId = link.hash.replace("#", "");
-            const isActive = isHomePage && activeSection === sectionId;
+        {/* Desktop Navigation — glassmorphism pill */}
+        <nav
+          className="hidden md:flex items-center gap-1 px-2 py-2 rounded-full"
+          style={{
+            background: "rgba(255,255,255,0.04)",
+            border: "1px solid rgba(255,255,255,0.08)",
+            backdropFilter: "blur(12px)",
+            WebkitBackdropFilter: "blur(12px)",
+          }}
+        >
+          {NAV_LINKS.map((link) => {
+            const isActive = isHomePage && activeSection === link.id;
             return (
               <a
-                key={link.name}
-                href={sectionHref(link.hash)}
-                className={`text-sm font-medium transition-colors duration-200 relative ${
+                key={link.id}
+                href={sectionHref(link.id)}
+                onClick={() => handleNavClick(link.id)}
+                className={`relative px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-300 ${
                   isActive
                     ? "text-white"
                     : "text-text-secondary hover:text-white"
                 }`}
               >
-                {link.name}
+                {/* Active pill background */}
                 {isActive && (
-                  <span className="absolute -bottom-1 left-0 right-0 h-[2px] rounded-full bg-accent-indigo" />
+                  <span
+                    className="absolute inset-0 rounded-full"
+                    style={{
+                      background: "linear-gradient(135deg, rgba(99,102,241,0.25) 0%, rgba(168,85,247,0.15) 100%)",
+                      border: "1px solid rgba(99,102,241,0.35)",
+                      boxShadow: "0 0 12px rgba(99,102,241,0.2)",
+                    }}
+                  />
                 )}
+                <span className="relative z-10">{link.name}</span>
               </a>
             );
           })}
@@ -97,46 +124,86 @@ export default function Navbar() {
         {/* CTA Button */}
         <div className="hidden md:flex items-center">
           <a
-            href={sectionHref("#contact")}
-            className="flex items-center gap-1 text-sm font-medium text-white px-5 py-2.5 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all duration-200"
+            href={sectionHref("contact")}
+            onClick={() => handleNavClick("contact")}
+            className="flex items-center gap-1.5 text-sm font-semibold text-white px-5 py-2.5 rounded-full transition-all duration-300 group"
+            style={{
+              background: "linear-gradient(135deg, #6366f1, #a855f7)",
+              boxShadow: "0 0 0 0 rgba(99,102,241,0.4)",
+            }}
+            onMouseEnter={(e) => {
+              (e.currentTarget as HTMLAnchorElement).style.boxShadow =
+                "0 4px 20px rgba(99,102,241,0.5)";
+            }}
+            onMouseLeave={(e) => {
+              (e.currentTarget as HTMLAnchorElement).style.boxShadow =
+                "0 0 0 0 rgba(99,102,241,0.4)";
+            }}
           >
             <span>Let&apos;s talk</span>
-            <ArrowUpRight size={14} className="opacity-60" />
+            <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200" />
           </a>
         </div>
 
         {/* Mobile Menu Toggle */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden text-text-secondary hover:text-white p-2"
+          className="md:hidden text-text-secondary hover:text-white p-2 rounded-lg transition-colors duration-200"
           aria-label="Toggle menu"
           aria-expanded={isOpen}
         >
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
+          {isOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
       </div>
 
-      {/* Mobile Drawer — fully opaque so content never bleeds through */}
+      {/* Mobile Drawer */}
       <div
-        className={`fixed inset-0 top-[65px] z-40 bg-bg-primary border-t border-white/5 md:hidden transition-transform duration-300 ease-in-out ${
-          isOpen ? "translate-x-0" : "translate-x-full"
+        className={`fixed inset-0 top-[57px] z-40 md:hidden transition-all duration-300 ease-in-out ${
+          isOpen ? "opacity-100 translate-x-0" : "opacity-0 translate-x-full pointer-events-none"
         }`}
+        style={{
+          background: "rgba(3,7,18,0.97)",
+          backdropFilter: "blur(20px)",
+          WebkitBackdropFilter: "blur(20px)",
+          borderTop: "1px solid rgba(255,255,255,0.06)",
+        }}
       >
-        <nav className="flex flex-col p-8 gap-6">
-          {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={sectionHref(link.hash)}
-              onClick={() => setIsOpen(false)}
-              className="text-lg font-semibold text-text-secondary hover:text-white transition-colors duration-200 border-b border-white/5 pb-2"
-            >
-              {link.name}
-            </a>
-          ))}
+        <nav className="flex flex-col p-8 gap-3">
+          {NAV_LINKS.map((link) => {
+            const isActive = isHomePage && activeSection === link.id;
+            return (
+              <a
+                key={link.id}
+                href={sectionHref(link.id)}
+                onClick={() => handleNavClick(link.id)}
+                className={`flex items-center gap-3 px-4 py-3.5 rounded-xl text-base font-medium transition-all duration-200 ${
+                  isActive
+                    ? "text-white"
+                    : "text-text-secondary hover:text-white hover:bg-white/5"
+                }`}
+                style={
+                  isActive
+                    ? {
+                        background: "linear-gradient(135deg, rgba(99,102,241,0.2) 0%, rgba(168,85,247,0.1) 100%)",
+                        border: "1px solid rgba(99,102,241,0.3)",
+                      }
+                    : {}
+                }
+              >
+                {isActive && (
+                  <span className="w-1.5 h-1.5 rounded-full bg-accent-indigo" />
+                )}
+                {link.name}
+              </a>
+            );
+          })}
           <a
-            href={sectionHref("#contact")}
-            onClick={() => setIsOpen(false)}
-            className="flex items-center justify-center gap-2 mt-4 text-center font-medium text-black bg-white hover:bg-zinc-200 px-6 py-3 rounded-full transition-all duration-200"
+            href={sectionHref("contact")}
+            onClick={() => handleNavClick("contact")}
+            className="flex items-center justify-center gap-2 mt-4 text-center font-semibold text-white px-6 py-3.5 rounded-full transition-all duration-200"
+            style={{
+              background: "linear-gradient(135deg, #6366f1, #a855f7)",
+            }}
           >
             <span>Let&apos;s talk</span>
             <ArrowUpRight size={16} />
