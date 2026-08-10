@@ -1,0 +1,137 @@
+# Ajay Sathasivam — Portfolio
+
+> Personal portfolio website for Ajay Sathasivam, a frontend-specialized software developer with 1.7+ years of professional experience building production-grade SaaS web and mobile applications.
+
+## About
+
+Ajay Sathasivam is a software developer specialising in frontend engineering. He has contributed to 7+ production SaaS modules spanning industries such as maritime operations, KYC/AML compliance, and mobile data management. He combines deep React/Next.js expertise with hands-on backend knowledge (NestJS, Laravel, PostgreSQL) and DevOps tooling (Docker, Bash, Vercel).
+
+- Location: Chennai, India (open to remote)
+- Status: Open to new opportunities
+- Email: ajaysathasivam2003@gmail.com
+- GitHub: https://github.com/ajaysathasivam
+- LinkedIn: https://www.linkedin.com/in/ajaysathasivam/
+
+---
+
+## Experience
+
+### Software Developer (Frontend Specialist) — Selvi Software Technologies Pvt Ltd
+**Feb 2025 – Present | Chennai, India (Remote)**
+
+- Engineered an interactive multi-destination Trip Planner & Timeline Builder in React 19 with strict date-boundary validations.
+- Built a high-density Guest Preference Matrix with sticky section headers, scroll-to-error validation, and i18next localisation (EN, ZH).
+- Developed a real-time messaging hub with NestJS + Socket.io featuring @username mentions and group channels.
+- Created a drag-and-drop dashboard widget engine using @dnd-kit, persisting layouts to the database.
+- Architected role-based auth and Stripe checkout flows using NextAuth.js.
+- Authored a Bash utility (sync-db-branch.sh) that spins up isolated Docker PostgreSQL containers per Git feature branch to prevent schema collisions.
+
+**Key Tech:** React 19, Next.js, TypeScript, Tailwind CSS, Zustand, Redux, NestJS, Laravel 12, PostgreSQL, Socket.io, Docker, Prisma ORM, Stripe, i18next
+
+---
+
+### B.E. Computer Science & Engineering — Sri Sairam Engineering College
+**2020 – 2024 | Chennai, India**
+
+Graduated with a CS&E degree. Focused on data structures, algorithms, web technologies, and software engineering principles. Built foundational full-stack projects using PHP, MySQL, and JavaScript.
+
+---
+
+## Core Skills
+
+**Frontend Stack:** React 19, Next.js, TypeScript, Tailwind CSS, Redux, Zustand, Formik & Yup, Framer Motion
+**Backend & Systems:** Node.js, NestJS, Laravel, REST APIs, Socket.io, PostgreSQL, Prisma ORM, Redis
+**Tools & DevOps:** Git & GitHub, Docker, Bash Scripting, NextAuth.js, Vite, Vercel
+
+---
+
+## Projects
+
+### Yacht CRM & Scheduling Platform
+**Role:** Software Developer (Frontend Specialist) | Selvi Software Technologies Pvt Ltd | Feb 2025 – Present
+**Platform:** Web
+**Tags:** React 19, Tailwind CSS, i18next, Laravel 12 API, Stripe
+
+A production-grade SaaS application for yacht charter operations. Features an interactive multi-destination Trip Planner, a high-density Guest Preference Matrix, a real-time Notification Center, and a customisable drag-and-drop Home Dashboard. Includes multi-tenant Stripe subscription management.
+
+**Tech Stack:**
+- Frontend Core: React 19, Next.js, TypeScript, Tailwind CSS
+- State & Forms: Zustand, Context API, Formik, Yup Validation
+- Backend APIs: Laravel 12, Eloquent ORM, Sanctum Auth
+- Localization & Utilities: i18next (EN, ZH), Yajra DataTables, Stripe Checkout
+
+---
+
+### Marine Operations & Regatta SaaS
+**Role:** Software Developer (Frontend & Systems) | Selvi Software Technologies Pvt Ltd | Feb 2025 – Present
+**Platform:** Web
+**Tags:** React 19, Tailwind CSS 4, NestJS 11, Socket.io, Prisma ORM, Docker
+
+A high-performance marine operations and real-time regatta management platform. Features Socket.io WebSocket messaging, an @mention autocomplete engine, drag-and-drop content curation using @dnd-kit, and a Docker branch-isolation database sync script.
+
+**Tech Stack:**
+- Frontend Stack: React 19, Zustand, Tailwind CSS 4, React Router 7, @dnd-kit/core
+- Backend Frameworks: NestJS 11 (TypeScript), Socket.io WebSockets, Class Validator
+- Database & Tooling: PostgreSQL, Prisma ORM, Docker Engine, Bash Scripting
+
+---
+
+### KYC/AML Compliance & Admin Suite
+**Role:** Frontend Developer | Selvi Software Technologies Pvt Ltd | Feb 2025 – Present
+**Platform:** Web
+**Tags:** Next.js, NextAuth.js, Tailwind CSS, Recharts, Node.js, Express
+
+An enterprise-grade compliance portal for KYC and AML workflows. Features role-based session management, CSV bulk import with field-mapping validation, watchlist screening, analytics dashboards (Recharts), and transactional payout reporting tables (@tanstack/react-table).
+
+**Tech Stack:**
+- Frontend UI: Next.js, TypeScript, Tailwind CSS, Recharts, @tanstack/react-table
+- Security & Auth: NextAuth.js, Role-Based Routing, JWT Session Management
+- API Services: Node.js, Express API, REST Endpoints, PostgreSQL
+
+---
+
+### DataTribe — Shared Mobile Data Planner
+**Role:** Lead Mobile Developer | Personal Project | 2026
+**Platform:** Mobile (React Native / Expo)
+**Tags:** React Native, Expo SDK 54, React 19, Zustand 5, Formik, Yup
+**GitHub:** https://github.com/ajaysathasivam/datatribe/tree/main
+**Expo:** https://expo.dev/@anonymous/data-rollover
+
+A cross-platform mobile app for families and teams to coordinate shared mobile data pools. Features a multi-step tribe setup wizard, a predictive Daily Rollover Engine, a Virtual Rollover Vault, dual Device/Simulated monitoring modes, and offline-capable Zustand AsyncStorage persistence.
+
+**Tech Stack:**
+- Mobile Core: React Native 0.81, Expo SDK 54, React 19, Safe Area Context
+- State & Validation: Zustand 5 (Persist), Formik Wizard, Yup Validation
+- Offline & Layout: AsyncStorage, Vanilla StyleSheet API, Feather Icons
+
+---
+
+### Stream Client — Live Streaming App
+**Role:** Lead Mobile Developer | Personal Project | 2026
+**Platform:** Mobile (React Native / Expo)
+**Tags:** React Native, Expo SDK 54, Zustand, Socket.io Client, Reanimated, expo-video
+**GitHub:** https://github.com/ajaysathasivam/stream-client/tree/main
+**Expo:** https://expo.dev/@anonymous/stream-client
+
+A high-performance live broadcasting client built on Expo SDK 54. Supports RTMP broadcasting (react-native-nodemediaclient) with front/back camera toggling, HLS viewer playback (expo-video), real-time Socket.io chat & viewer counts, floating animated emoji reactions (react-native-reanimated), and dynamic MediaMTX server configuration.
+
+**Tech Stack:**
+- Mobile Stream Core: React Native, Expo SDK 54, expo-video HLS Playback
+- RTMP & Broadcast: react-native-nodemediaclient, Native Device Camera Module
+- WebSockets & Animation: socket.io-client, react-native-reanimated, Zustand Store
+
+---
+
+## Site Structure
+
+- `/` — Home (Hero, About, Projects, Experience, Contact sections)
+- `/projects/[slug]` — Individual project detail pages
+- `/llms.txt` — This file (AI-readable summary)
+- `/robots.txt` — Crawl rules
+- `/sitemap.xml` — Auto-generated sitemap
+
+---
+
+## Tech Stack (Portfolio Site)
+
+Built with Next.js (App Router), TypeScript, and Tailwind CSS. Deployed on Vercel. Domain: https://ajaysathasivam.dev
