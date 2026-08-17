@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback, useRef, useSyncExternalStore } from "react";
 import { createPortal } from "react-dom";
 import { usePathname } from "next/navigation";
 import { Menu, X, ArrowUpRight } from "lucide-react";
@@ -13,24 +13,21 @@ const NAV_LINKS = [
   { name: "Contact",    id: "contact" },
 ];
 
+const emptySubscribe = () => () => {};
+
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const [navHeight, setNavHeight] = useState(0);
-  const [mounted, setMounted] = useState(false);
+
+  const mounted = useSyncExternalStore(emptySubscribe, () => true, () => false);
 
   const headerRef = useRef<HTMLElement>(null);
   const pathname = usePathname();
   const isHomePage = pathname === "/";
 
   const sectionHref = (id: string) => (isHomePage ? `#${id}` : `/#${id}`);
-
-  // Track when component is mounted (needed for createPortal)
-  useEffect(() => {
-    setMounted(true);
-    return () => setMounted(false);
-  }, []);
 
   // Measure actual header height so the drawer aligns perfectly
   useEffect(() => {

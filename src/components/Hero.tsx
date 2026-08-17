@@ -1,110 +1,217 @@
-import { ArrowRight, Download, ChevronDown } from "lucide-react";
+"use client";
+
+import { useState } from "react";
+import { ArrowRight, Download, ChevronDown, Copy, Check, Terminal, MapPin } from "lucide-react";
 
 export default function Hero() {
+  const [copied, setCopied] = useState(false);
+  const [activeTab, setActiveTab] = useState<"info" | "stack" | "status">("info");
+
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText("ajaysathasivam2003@gmail.com");
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center pt-24 overflow-hidden bg-bg-primary">
-      {/* Background Decorative Gradients */}
-      <div className="absolute inset-0 z-0">
-        {/* Glowing Orb 1 */}
-        <div className="absolute top-[20%] left-[20%] w-[350px] h-[350px] rounded-full bg-accent-indigo/15 blur-[120px] animate-pulse-slow"></div>
-        {/* Glowing Orb 2 */}
-        <div className="absolute bottom-[25%] right-[15%] w-[400px] h-[400px] rounded-full bg-accent-purple/15 blur-[130px] animate-pulse-slow" style={{ animationDelay: "2s" }}></div>
-        {/* Subtle Grid overlay */}
-        <div
-          className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:4rem_4rem]"
-          style={{ maskImage: "radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)", WebkitMaskImage: "radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)" }}
-        ></div>
+    <section id="home" className="relative min-h-screen flex items-center justify-center pt-28 pb-16 overflow-hidden bg-bg-primary bg-grid-pattern">
+      {/* Background Lighting / Spotlight */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-accent-indigo/10 blur-[140px] pointer-events-none rounded-full" />
+      <div className="absolute bottom-1/3 right-10 w-[400px] h-[300px] bg-accent-purple/10 blur-[130px] pointer-events-none rounded-full" />
+
+      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        
+        {/* Left Column: Brand & Hero Messaging */}
+        <div className="lg:col-span-7 flex flex-col items-start text-left">
+          
+          {/* Status & Location Pill */}
+          <div className="flex flex-wrap items-center gap-3 mb-6">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bento-card text-xs font-semibold text-emerald-400 border border-emerald-500/20">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+              <span>Available for New Roles</span>
+            </div>
+            
+            <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-text-secondary">
+              <MapPin size={12} className="text-accent-cyan" />
+              <span>Chennai, India (IST)</span>
+            </div>
+          </div>
+
+          {/* Main Headline */}
+          <h1 className="text-4xl md:text-6xl lg:text-6xl font-black tracking-tight mb-6 leading-[1.1] text-white">
+            Frontend Software Developer
+            <br />
+            <span className="text-gradient-purple-indigo">
+              Building High-Density SaaS & Mobile Apps
+            </span>
+          </h1>
+
+          {/* Subtitle */}
+          <p className="text-base md:text-lg text-text-secondary max-w-2xl mb-8 leading-relaxed font-normal">
+            Hi, I&apos;m <strong className="text-white font-semibold">Ajay Sathasivam</strong>. With 1.7+ years of professional experience, I architect production-grade web platforms and cross-platform mobile apps using React 19, Next.js, Zustand, NestJS, and Expo.
+          </p>
+
+          {/* Actions */}
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto mb-10">
+            <a
+              href="#projects"
+              className="flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-white text-black font-semibold hover:bg-zinc-200 transition-all duration-300 shadow-[0_0_25px_rgba(255,255,255,0.15)] hover:scale-[1.02]"
+            >
+              <span>Explore My Work</span>
+              <ArrowRight size={18} />
+            </a>
+
+            <a
+              href="/Resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              download
+              className="flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bento-card text-white font-semibold hover:bg-white/10 border-white/15 transition-all duration-300 hover:scale-[1.02]"
+            >
+              <span>Download CV</span>
+              <Download size={18} />
+            </a>
+
+            <button
+              onClick={handleCopyEmail}
+              className="flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl bento-card text-text-secondary hover:text-white border-white/10 transition-all duration-300"
+              title="Copy Email Address"
+            >
+              {copied ? (
+                <>
+                  <Check size={16} className="text-emerald-400" />
+                  <span className="text-xs text-emerald-400 font-semibold">Copied!</span>
+                </>
+              ) : (
+                <>
+                  <Copy size={16} />
+                  <span className="text-xs font-medium">Copy Email</span>
+                </>
+              )}
+            </button>
+          </div>
+
+          {/* Tech Badges Row */}
+          <div className="flex items-center gap-2 flex-wrap text-xs text-text-muted">
+            <span className="font-medium text-text-secondary uppercase tracking-wider text-[11px] mr-2">Specialized in:</span>
+            {["React 19", "Next.js", "TypeScript", "Tailwind 4", "React Native", "Zustand", "NestJS"].map((tech, idx) => (
+              <span
+                key={idx}
+                className="px-2.5 py-1 rounded-md bg-white/[0.04] text-text-secondary border border-white/[0.08] hover:border-accent-indigo/40 hover:text-white transition-colors duration-200"
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
+
+        </div>
+
+        {/* Right Column: Interactive Developer Terminal Widget */}
+        <div className="lg:col-span-5 w-full">
+          <div className="terminal-window rounded-2xl overflow-hidden text-left">
+            {/* Terminal Header */}
+            <div className="bg-[#121215] px-4 py-3 border-b border-white/10 flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <span className="w-3 h-3 rounded-full bg-red-500/80 inline-block" />
+                <span className="w-3 h-3 rounded-full bg-yellow-500/80 inline-block" />
+                <span className="w-3 h-3 rounded-full bg-green-500/80 inline-block" />
+              </div>
+
+              <div className="flex items-center gap-2 text-xs text-text-muted font-mono">
+                <Terminal size={14} className="text-accent-indigo" />
+                <span>ajay@developer-deck:~</span>
+              </div>
+
+              <div className="w-12" />
+            </div>
+
+            {/* Terminal Navigation Tabs */}
+            <div className="flex border-b border-white/10 bg-[#0e0e11] text-xs font-mono">
+              <button
+                onClick={() => setActiveTab("info")}
+                className={`px-4 py-2 flex items-center gap-1.5 transition-colors border-r border-white/10 ${
+                  activeTab === "info" ? "bg-[#18181c] text-accent-cyan font-bold border-b-2 border-b-accent-cyan" : "text-text-muted hover:text-text-secondary"
+                }`}
+              >
+                <span>info.json</span>
+              </button>
+              <button
+                onClick={() => setActiveTab("stack")}
+                className={`px-4 py-2 flex items-center gap-1.5 transition-colors border-r border-white/10 ${
+                  activeTab === "stack" ? "bg-[#18181c] text-accent-purple font-bold border-b-2 border-b-accent-purple" : "text-text-muted hover:text-text-secondary"
+                }`}
+              >
+                <span>stack.sh</span>
+              </button>
+              <button
+                onClick={() => setActiveTab("status")}
+                className={`px-4 py-2 flex items-center gap-1.5 transition-colors ${
+                  activeTab === "status" ? "bg-[#18181c] text-emerald-400 font-bold border-b-2 border-b-emerald-400" : "text-text-muted hover:text-text-secondary"
+                }`}
+              >
+                <span>metrics.log</span>
+              </button>
+            </div>
+
+            {/* Terminal Body */}
+            <div className="p-6 font-mono text-xs md:text-sm leading-relaxed text-text-secondary bg-[#0a0a0c] min-h-[260px] flex flex-col justify-between">
+              {activeTab === "info" && (
+                <div className="space-y-2">
+                  <p className="text-text-muted"><span className="text-accent-indigo">$</span> cat developer.json</p>
+                  <pre className="text-emerald-300 font-mono whitespace-pre-wrap">
+{`{
+  "name": "Ajay Sathasivam",
+  "role": "Frontend Software Developer",
+  "experience": "1.7+ Years",
+  "company": "Selvi Software Technologies",
+  "location": "Chennai, IN",
+  "focus": "SaaS Modules & React Native Apps",
+  "openForHire": true
+}`}
+                  </pre>
+                </div>
+              )}
+
+              {activeTab === "stack" && (
+                <div className="space-y-2">
+                  <p className="text-text-muted"><span className="text-accent-purple">$</span> ./list-capabilities.sh</p>
+                  <div className="space-y-1.5 pt-1 text-zinc-300">
+                    <p><span className="text-accent-cyan">▸ Frontend:</span> React 19, Next.js 16, TypeScript, Tailwind CSS 4, Zustand</p>
+                    <p><span className="text-accent-purple">▸ Mobile:</span> React Native, Expo SDK 54, Reanimated, expo-video</p>
+                    <p><span className="text-accent-indigo">▸ Backend:</span> NestJS 11, Laravel 12, Socket.io, PostgreSQL, Docker</p>
+                    <p><span className="text-emerald-400">▸ Realtime:</span> WebSockets, Floating Mentions, Dynamic Data Grids</p>
+                  </div>
+                </div>
+              )}
+
+              {activeTab === "status" && (
+                <div className="space-y-2">
+                  <p className="text-text-muted"><span className="text-emerald-400">$</span> tail -n 4 production-stats.log</p>
+                  <div className="space-y-1.5 pt-1 text-zinc-300">
+                    <p>[2026-08] <span className="text-emerald-400">SUCCESS</span> Yacht CRM Trip Planner released</p>
+                    <p>[2026-08] <span className="text-emerald-400">SUCCESS</span> 7+ SaaS Modules deployed</p>
+                    <p>[2026-08] <span className="text-emerald-400">SUCCESS</span> 2 Expo Apps published</p>
+                    <p>[2026-08] <span className="text-accent-cyan">ACTIVE</span> Building next-gen web & mobile experiences</p>
+                  </div>
+                </div>
+              )}
+
+              {/* Interactive prompt line */}
+              <div className="pt-4 border-t border-white/10 flex items-center gap-2 text-text-muted text-xs">
+                <span className="text-accent-indigo">ajay@dev-machine:~$</span>
+                <span className="inline-block w-2 h-4 bg-accent-cyan animate-pulse" />
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
 
-      <div className="relative z-10 max-w-5xl mx-auto px-6 md:px-12 text-center flex flex-col items-center">
-        {/* Status Badge */}
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-panel text-xs md:text-sm font-medium text-accent-cyan mb-8 animate-float">
-          <span className="w-2 h-2 rounded-full bg-accent-cyan animate-ping" aria-hidden="true"></span>
-          <span>Open to new opportunities</span>
-        </div>
-
-        {/* Hero Title */}
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-8 leading-[1.1] max-w-4xl">
-          Crafting Next-Gen
-          <br />
-          <span className="text-gradient-rainbow">Web Experiences</span>
-        </h1>
-
-        {/* Hero Subtitle */}
-        <p className="text-lg md:text-xl text-text-secondary max-w-2xl mb-10 leading-relaxed font-light">
-          Hi, I&apos;m <span className="font-semibold text-white">Ajay Sathasivam</span>. I am a frontend-specialized software developer with 1.7 years of experience building high-performance, responsive SaaS web applications using React, Next.js, and modern tools.
-        </p>
-
-        {/* Action Buttons */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-14 w-full sm:w-auto">
-          <a
-            href="#projects"
-            className="flex items-center justify-center gap-2 w-full sm:w-auto px-8 py-4 rounded-full bg-white text-black font-semibold hover:bg-zinc-200 transition-all duration-300 shadow-[0_0_30px_rgba(99,102,241,0.3)] hover:shadow-[0_0_40px_rgba(99,102,241,0.5)]"
-          >
-            <span>View My Work</span>
-            <ArrowRight size={18} />
-          </a>
-          <a
-            href="/Resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            download
-            className="flex items-center justify-center gap-2 w-full sm:w-auto px-8 py-4 rounded-full glass-panel text-white font-semibold hover:bg-white/10 border-white/10 hover:border-white/20 transition-all duration-300"
-          >
-            <span>Download Resume</span>
-            <Download size={18} />
-          </a>
-        </div>
-
-        {/* Social Links */}
-        <div className="flex items-center gap-6 text-text-secondary">
-          <a
-            href="https://github.com/ajaysathasivam"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-white hover:scale-110 transition-all duration-200"
-            aria-label="GitHub"
-          >
-            <svg
-              className="w-[22px] h-[22px] fill-current"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.579.688.481C19.137 20.162 22 16.418 22 12c0-5.523-4.477-10-10-10z" />
-            </svg>
-          </a>
-          <a
-            href="https://www.linkedin.com/in/ajaysathasivam/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-white hover:scale-110 transition-all duration-200"
-            aria-label="LinkedIn"
-          >
-            <svg
-              className="w-[22px] h-[22px] fill-current"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-            </svg>
-          </a>
-          <a
-            href="mailto:ajaysathasivam2003@gmail.com"
-            className="hover:text-white hover:scale-110 transition-all duration-200"
-            aria-label="Email"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" className="w-[22px] h-[22px] fill-none stroke-current" viewBox="0 0 24 24" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-              <rect width="20" height="16" x="2" y="4" rx="2" />
-              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-            </svg>
-          </a>
-        </div>
-      </div>
-
-      {/* Scroll-down indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 animate-bounce text-text-muted">
-        <ChevronDown size={22} aria-hidden="true" />
+      {/* Scroll Indicator */}
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center text-text-muted animate-bounce">
+        <ChevronDown size={20} />
       </div>
     </section>
   );
 }
+
